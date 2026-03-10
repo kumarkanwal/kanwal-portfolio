@@ -123,4 +123,4 @@ kanwal-portfolio/
 
 ---
 
-Built with 🤖 by Claude for Kanwal Kumar (AI) — Innoventix360
+Built by Kanwal Kumar (AI) — Innoventix360
