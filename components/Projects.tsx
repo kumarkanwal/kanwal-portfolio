@@ -1,7 +1,18 @@
 'use client'
 import { ExternalLink, Github } from 'lucide-react'
 
-const projects = [
+interface Project {
+  title: string
+  description: string
+  tags: string[]
+  emoji: string
+  color: string
+  status: string
+  featured?: boolean
+  github?: string
+}
+
+const projects: Project[] = [
   {
   title: 'WhatsApp AI Customer Support Agent',
   description: 'A 24/7 autonomous AI agent that handles customer inquiries, qualifies leads, and saves them to a CRM automatically — built with whatsapp-web.js, N8N, and OpenAI.',
@@ -81,7 +92,7 @@ export default function Projects() {
             <div
               key={i}
               className={`glass-card rounded-2xl p-7 flex flex-col box-glow-hover relative overflow-hidden ${p.featured ? 'ring-1' : ''}`}
-              style={p.featured ? { ringColor: p.color } : {}}
+              style={p.featured ? { outline: `1px solid ${p.color}` } : {}}
             >
               {p.featured && (
                 <div className="absolute top-4 right-4 text-xs font-mono px-2 py-1 rounded"
