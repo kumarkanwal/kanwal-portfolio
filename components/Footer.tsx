@@ -14,7 +14,7 @@ export default function Footer() {
           </span>
         </div>
         <p className="font-mono text-xs text-center" style={{ color: 'var(--text-muted)' }}>
-          © {new Date().getFullYear()} Built with ❤️ By kanwal
+          © {new Date().getFullYear()} Built with ❤️ By "Kanwal Kumar(AI)"
         </p>
         <p className="font-mono text-xs" style={{ color: 'var(--cyber)' }}>
           Automate. Scale. Dominate.
