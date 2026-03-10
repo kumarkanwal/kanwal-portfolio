@@ -29,7 +29,7 @@ const socials = [
   {
     label: 'Agency',
     handle: 'codevcreation.com',
-    href: 'https://codevcreation.com/',
+    href: 'https://Innoventix360.com/',
     icon: <Globe size={20} />,
     color: '#00fff5',
     desc: 'CodePro Software & Web',
