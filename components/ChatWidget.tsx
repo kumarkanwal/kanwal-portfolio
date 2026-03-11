@@ -68,18 +68,40 @@ export default function ChatWidget() {
       )}
 
       {/* Toggle button */}
-      <button
-        onClick={() => setOpen(!open)}
-        className="w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition-all hover:scale-110 relative"
-        style={{ background: 'var(--cyber)', color: '#000', boxShadow: '0 0 20px var(--cyber-glow)' }}
-      >
-        {open ? <X size={22} /> : <Bot size={22} />}
-        {!open && (
-          <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-green-400 flex items-center justify-center">
-            <span className="w-2 h-2 rounded-full bg-green-400 animate-ping absolute" />
-          </span>
-        )}
-      </button>
+     {/* Floating bubble message */}
+{!open && (
+  <div className="absolute bottom-16 right-0 mb-2 animate-bounce-slow">
+    <div
+      className="px-4 py-3 rounded-2xl rounded-br-none text-sm font-body relative whitespace-nowrap shadow-lg"
+      style={{
+        background: 'var(--bg-card)',
+        border: '1px solid var(--cyber)',
+        color: 'var(--text-primary)',
+        boxShadow: '0 0 15px var(--cyber-glow)',
+      }}
+    >
+      👋 Hi! I'm Kanwal's AI — Ask me anything!
+      {/* Triangle pointer */}
+      <div className="absolute -bottom-2 right-4 w-3 h-3 rotate-45"
+        style={{ background: 'var(--bg-card)', borderRight: '1px solid var(--cyber)', borderBottom: '1px solid var(--cyber)' }}
+      />
+    </div>
+  </div>
+)}
+
+{/* Toggle button */}
+<button
+  onClick={() => setOpen(!open)}
+  className="w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition-all hover:scale-110 relative"
+  style={{ background: 'var(--cyber)', color: '#000', boxShadow: '0 0 20px var(--cyber-glow)' }}
+>
+  {open ? <X size={22} /> : <Bot size={22} />}
+  {!open && (
+    <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-green-400 flex items-center justify-center">
+      <span className="w-2 h-2 rounded-full bg-green-400 animate-ping absolute" />
+    </span>
+  )}
+</button>
     </div>
   )
 }
