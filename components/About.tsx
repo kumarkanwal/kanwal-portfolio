@@ -95,7 +95,7 @@ export default function About() {
                 LinkedIn Profile
               </a>
               <a
-                href="/kanwal.png"
+                href="/Kanwal-AI-Automation-CV.pdf"
                 download
                 className="flex items-center gap-2 px-5 py-2.5 rounded font-mono text-sm transition-all hover:scale-105"
                 style={{ background: 'var(--cyber)', color: 'var(--bg-primary)' }}
