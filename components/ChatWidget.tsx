@@ -1,9 +1,17 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { MessageSquare, X, Bot, Send } from 'lucide-react'
 
 export default function ChatWidget() {
   const [open, setOpen] = useState(false)
+const [showBubble, setShowBubble] = useState(false)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowBubble(true)
+    }, 12000) // 12 seconds delay
+    return () => clearTimeout(timer)
+  }, [])
 
   return (
     <div className="chat-widget">
