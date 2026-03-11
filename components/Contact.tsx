@@ -1,6 +1,7 @@
-'use client'
-import { Mail, Linkedin, Github, Twitter, Globe, MessageSquare } from 'lucide-react'
 
+'use client'
+import { useState } from 'react'
+import { Mail, Linkedin, Github, Twitter, Globe, MessageSquare } from 'lucide-react'
 const socials = [
   {
     label: 'LinkedIn',
@@ -37,6 +38,41 @@ const socials = [
 ]
 
 export default function Contact() {
+  const [status, setStatus] = useState('')
+  const [loading, setLoading] = useState(false)
+
+  const handleSubmit = async () => {
+    const name = (document.querySelector('input[placeholder="Your Name"]') as HTMLInputElement)?.value
+    const email = (document.querySelector('input[placeholder="Your Email"]') as HTMLInputElement)?.value
+    const subject = (document.querySelector('input[placeholder="Subject"]') as HTMLInputElement)?.value
+    const message = (document.querySelector('textarea') as HTMLTextAreaElement)?.value
+
+    if (!name || !email || !message) {
+      setStatus('❌ Please fill in all fields')
+      return
+    }
+
+    setLoading(true)
+    setStatus('')
+
+    try {
+      const res = await fetch('https://formspree.io/f/xpqydagq', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, subject, message }),
+      })
+
+      if (res.ok) {
+        setStatus('✅ Message sent! I\'ll get back to you within 24 hours.')
+      } else {
+        setStatus('❌ Something went wrong. Please email me directly.')
+      }
+    } catch {
+      setStatus('❌ Something went wrong. Please email me directly.')
+    } finally {
+      setLoading(false)
+    }
+  }
   return (
     <section id="contact" className="relative py-28 px-6">
       <div className="absolute inset-0 pointer-events-none" style={{
@@ -73,6 +109,95 @@ export default function Contact() {
             </a>
           </div>
         </div>
+
+{/* Contact Form */}
+<div className="rounded-2xl p-8 mb-10"
+  style={{
+    background: 'var(--bg-card)',
+    border: '1px solid var(--border)',
+  }}>
+  <h3 className="font-display font-700 text-xl mb-2" style={{ color: '#ffffff' }}>
+    Send Me a Message
+  </h3>
+  <p className="text-sm mb-6" style={{ color: '#8ab4c8' }}>
+    Fill in the form and I'll get back to you within 24 hours
+  </p>
+
+  <div className="space-y-4">
+    {/* Name + Email row */}
+    <div className="grid sm:grid-cols-2 gap-4">
+      <input
+        type="text"
+        placeholder="Your Name"
+        className="w-full px-4 py-3 rounded-lg text-sm outline-none transition-all"
+        style={{
+          background: 'var(--bg-secondary)',
+          border: '1px solid var(--border)',
+          color: 'var(--text-primary)',
+        }}
+        onFocus={e => e.target.style.borderColor = 'var(--cyber)'}
+        onBlur={e => e.target.style.borderColor = 'var(--border)'}
+      />
+      <input
+        type="email"
+        placeholder="Your Email"
+        className="w-full px-4 py-3 rounded-lg text-sm outline-none transition-all"
+        style={{
+          background: 'var(--bg-secondary)',
+          border: '1px solid var(--border)',
+          color: 'var(--text-primary)',
+        }}
+        onFocus={e => e.target.style.borderColor = 'var(--cyber)'}
+        onBlur={e => e.target.style.borderColor = 'var(--border)'}
+      />
+    </div>
+
+    {/* Subject */}
+    <input
+      type="text"
+      placeholder="Subject"
+      className="w-full px-4 py-3 rounded-lg text-sm outline-none transition-all"
+      style={{
+        background: 'var(--bg-secondary)',
+        border: '1px solid var(--border)',
+        color: 'var(--text-primary)',
+      }}
+      onFocus={e => e.target.style.borderColor = 'var(--cyber)'}
+      onBlur={e => e.target.style.borderColor = 'var(--border)'}
+    />
+
+    {/* Message */}
+    <textarea
+      rows={5}
+      placeholder="Tell me about your project or automation needs..."
+      className="w-full px-4 py-3 rounded-lg text-sm outline-none transition-all resize-none"
+      style={{
+        background: 'var(--bg-secondary)',
+        border: '1px solid var(--border)',
+        color: 'var(--text-primary)',
+      }}
+      onFocus={e => e.target.style.borderColor = 'var(--cyber)'}
+      onBlur={e => e.target.style.borderColor = 'var(--border)'}
+    />
+
+    {/* Submit button */}
+    <button
+      onClick={handleSubmit}
+      className="w-full py-3 rounded-lg font-mono text-sm font-600 transition-all hover:scale-105"
+      style={{ background: 'var(--cyber)', color: '#000000' }}
+    >
+      Send Message ⚡
+    </button>
+
+    {/* Status message */}
+    {status && (
+      <p className="text-center text-sm font-mono"
+        style={{ color: status.includes('✅') ? '#22c55e' : '#ef4444' }}>
+        {status}
+      </p>
+    )}
+  </div>
+</div>
 
         {/* Socials grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
