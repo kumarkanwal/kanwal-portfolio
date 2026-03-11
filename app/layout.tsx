@@ -12,6 +12,10 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <title>Kanwal Kumar (AI) — Agentic AI & Automation Developer</title>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+      <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+      <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+      <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         <meta name="description" content="I build 24/7 AI Systems that qualify & book while you sleep. Agentic AI Developer specializing in n8n, LangChain, OpenAI & workflow automation." />
         <meta name="keywords" content="AI Automation, Agentic AI, n8n, LangChain, OpenAI, Workflow Automation, Kanwal Kumar" />
         <meta property="og:title" content="Kanwal Kumar (AI) — Agentic AI Developer" />
